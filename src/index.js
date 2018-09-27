@@ -1,18 +1,53 @@
 // DO WHATEVER YOU WANT HERE
 
-const createEnumerableProperty = () => {};
-const createNotEnumerableProperty = () => {};
-const createProtoMagicObject = () => {};
-const incrementor = () => {};
+const createEnumerableProperty = (property) => {
+  return property;
+};
+
+const createNotEnumerableProperty = (property) => {
+  Object.defineProperty(Object.prototype, property, {
+    enumerable: false,
+    value: 'value'
+  });
+  return property;
+};
+
+const createProtoMagicObject = () => {
+  var magicObj = () => {};
+  magicObj.prototype = magicObj.__proto__;
+  return magicObj;
+};
+
+const incrementor = () => {
+};
+
 const asyncIncrementor = () => {};
-const createIncrementer = () => {};
+
+const createIncrementer = function*() {
+  let index = 0;
+  while(true)
+      yield ++index;
+};
 
 // return same argument not earlier than in one second, and not later, than in two
-const returnBackInSecond = () => {};
+const returnBackInSecond = (param) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(param), 1000);
+    setTimeout(() => reject(new Error("Time out")), 2000);
+  });
+};
+
 const getDeepPropertiesCount = () => {};
-const createSerializedObject = () => {};
+
+const createSerializedObject = () => {
+  return null;
+};
+
 const toBuffer = () => {};
-const sortByProto = () => {};
+
+const sortByProto = (array) => {
+    return array.sort((a, b) => a.__proto__ - b.__proto__);
+};
 
 exports.createEnumerableProperty = createEnumerableProperty;
 exports.createNotEnumerableProperty = createNotEnumerableProperty;
